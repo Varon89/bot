@@ -3,7 +3,7 @@ name: Deploy to Ubuntu Server on push
 on:
   push:
     branches:
-      - bot
+      - main
 
 jobs:
   deploy:
