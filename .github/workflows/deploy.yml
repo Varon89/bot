@@ -1,9 +1,10 @@
-name: Deploy Bot to Ubuntu Server on push
+name: Deploy to Ubuntu Server on push
 
 on:
   push:
     branches:
-      - main
+      - bot
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -22,16 +23,16 @@ jobs:
 
       - name: Ensure directory exists and sync files
         run: |
-          ssh root@161.97.137.120 "mkdir -p /root/app/bot/register"
-          rsync -avz ./ root@161.97.137.120:/root/app/bot/register
+          ssh root@161.97.137.120 "mkdir -p /root/app/bot"
+          rsync -avz ./ root@161.97.137.120:/root/app/bot
 
       - name: Install dependencies
-        run: ssh root@161.97.137.120 "cd /root/app/bot/register && npm install"
+        run: ssh root@161.97.137.120 "cd /root/app/bot && npm install"
 
       - name: Check and restart or start pm2 process
         run: |
           ssh root@161.97.137.120 << 'EOF'
-            cd /root/app/bot/register
+            cd /root/app/bot
             if pm2 list | grep -q bot; then
               npm run pm2:restart
             else
