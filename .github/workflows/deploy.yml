@@ -1,4 +1,4 @@
-name: Deploy to Ubuntu Server on push
+name: Deploy Bot to Ubuntu Server on push
 
 on:
   push:
