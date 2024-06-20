@@ -23,17 +23,17 @@ jobs:
 
       - name: Ensure directory exists and sync files
         run: |
-          ssh root@161.97.137.120 "mkdir -p /root/app/bot"
-          rsync -avz ./ root@161.97.137.120:/root/app/bot
+          ssh root@161.97.137.120 "mkdir -p /root/server/bot"
+          rsync -avz ./ root@161.97.137.120:/root/server/bot
 
       - name: Install dependencies
-        run: ssh root@161.97.137.120 "cd /root/app/bot && npm install"
+        run: ssh root@161.97.137.120 "cd /root/server/bot && npm install"
 
       - name: Check and restart or start pm2 process
         run: |
           ssh root@161.97.137.120 << 'EOF'
-            cd /root/app/bot
-            if pm2 list | grep -q bot; then
+            cd /root/server/bot
+            if pm2 list | grep -q register; then
               npm run pm2:restart
             else
                npm run pm2
