@@ -1,14 +1,7 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
 const TelegramBot = require("node-telegram-bot-api");
 const mysql = require("mysql");
-const PORT = process.env.PORT || 8081;
 
 const token = "YOUR_TELEGRAM_BOT_TOKEN";
-
-app.use(cors());
-app.use(express.json());
 
 const bot = new TelegramBot(token, { polling: true });
 
@@ -338,8 +331,4 @@ Yangi Registiratsiya:
     chatId,
     "Barcha malumot adminga yetkazildi. Tez orada siz bilan bog'lanamiz."
   );
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
 });
