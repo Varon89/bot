@@ -1,7 +1,7 @@
 const TelegramBot = require("node-telegram-bot-api");
 const mysql = require("mysql");
 
-const token = "YOUR_TELEGRAM_BOT_TOKEN";
+const token = "asdf";
 
 const bot = new TelegramBot(token, { polling: true });
 
